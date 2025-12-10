@@ -1,104 +1,79 @@
 # AI Bots Framework
 
-Универсальный фреймворк для разработки AI-ботов и агентов с различными интерфейсами взаимодействия.
+Universal framework for developing AI bots and agents with different interaction interfaces.
 
-## Концепция
+## Concept
 
-Данный репозиторий предоставляет базовую структуру для создания AI-ботов с чётким разделением логики обработки и интерфейсов взаимодействия. Основная ветка содержит общую структуру проекта, в то время как отдельные ветки содержат конкретные реализации ботов с различными архитектурами и интерфейсами.
+This repository provides a base structure for building AI bots with clear separation between processing logic and interaction interfaces. The main branch contains the common project structure, while separate branches can contain specific bot implementations with different architectures and interfaces.
 
-## Принципы архитектуры
+## Architecture Principles
 
-### Разделение ответственности
+### Separation of Concerns
 
-- **Core** - основная логика обработки AI запросов, не зависящая от интерфейса
-- **Interfaces** - различные способы взаимодействия с пользователем (Telegram, Web, CLI)
-- **Database** - слой работы с данными, универсальный для всех интерфейсов
+- **Core** - main AI processing logic, independent of the interface
+- **Interfaces** - different ways to interact with users (Telegram, Web, CLI)
+- **Database** - data layer, universal for all interfaces
 
-### Модульность
+### Modularity
 
-Каждая ветка репозитория может содержать свою реализацию бота с уникальными возможностями, при этом используя общую структуру и подходы к конфигурации.
+Each repository branch can contain its own bot implementation with unique capabilities while using the common structure and configuration approaches.
 
-## Структура проекта
+## Project Structure
 
 ```
 ai-bots/
-├── core/                    # Основная логика AI
-│   ├── agents/             # Реализации AI агентов
-│   └── processors/         # Обработчики запросов и ответов
+├── core/                    # Main AI logic
+│   ├── agents/             # AI agent implementations
+│   └── processors/         # Request and response processors
 │
-├── interfaces/             # Интерфейсы взаимодействия
-│   ├── telegram/          # Telegram бот интерфейс
-│   ├── web/               # Веб-интерфейс (REST API, WebSocket)
-│   └── cli/               # Консольный интерфейс
+├── interfaces/             # Interaction interfaces
+│   ├── telegram/          # Telegram bot interface
+│   ├── web/               # Web interface (REST API, WebSocket)
+│   └── cli/               # Command-line interface
 │
-├── database/               # Работа с базами данных
-│   ├── models/            # Модели данных
-│   └── migrations/        # Миграции схемы БД
+├── database/               # Database layer
+│   ├── models/            # Data models
+│   └── migrations/        # Database schema migrations
 │
-├── config/                 # Конфигурационные файлы
-│   ├── config.example.py  # Пример конфигурации
-│   └── README.md          # Документация по настройке
+├── config/                 # Configuration files
+│   ├── config.example.py  # Configuration example
+│   └── README.md          # Configuration documentation
 │
-├── utils/                  # Вспомогательные функции и утилиты
-├── tests/                  # Тесты
-└── logs/                   # Логи приложения
+├── utils/                  # Helper functions and utilities
+├── tests/                  # Tests
+└── logs/                   # Application logs
 ```
 
-## Быстрый старт
+## Quick Start
 
-### 1. Клонирование репозитория
+### 1. Clone the repository
 
 ```bash
 git clone <repository-url>
 cd ai-bots
 ```
 
-### 2. Настройка конфигурации
+### 2. Configuration setup
 
-Выберите один из способов конфигурации:
+Choose one of the configuration methods:
 
-**Вариант A: Использование .env файла**
+**Option A: Using .env file**
 
 ```bash
 cp .env.example .env
-# Отредактируйте .env и укажите ваши API ключи
+# Edit .env and add your API keys
 ```
 
-**Вариант B: Использование Python конфигурации**
+**Option B: Using Python configuration**
 
 ```bash
 cp config/config.example.py config/config.py
-# Отредактируйте config/config.py под ваши нужды
+# Edit config/config.py according to your needs
 ```
 
-### 3. Установка зависимостей
+## Configuration
 
-```bash
-pip install -r requirements.txt  # Будет создан в конкретных ветках
-```
-
-### 4. Запуск
-
-Конкретные инструкции по запуску см. в соответствующей ветке проекта.
-
-## Ветки проекта
-
-Каждая ветка представляет собой отдельную реализацию AI-бота:
-
-- **main** - базовая структура (текущая ветка)
-- **telegram-bot-basic** - простой Telegram бот с AI API
-- **telegram-bot-database** - Telegram бот с сохранением истории в БД
-- **web-assistant** - веб-ассистент с REST API и WebSocket
-- **cli-assistant** - консольный AI ассистент
-- **multi-interface** - бот с несколькими интерфейсами одновременно
-
-Для работы с конкретной реализацией переключитесь на соответствующую ветку:
-
-```bash
-git checkout <branch-name>
-```
-
-## Поддерживаемые AI провайдеры
+### Supported AI Providers
 
 - OpenAI (GPT-3.5, GPT-4)
 - Anthropic (Claude)
@@ -106,44 +81,29 @@ git checkout <branch-name>
 - Cohere
 - HuggingFace
 
-## Поддерживаемые базы данных
+### Supported Databases
 
-- PostgreSQL - для реляционных данных
-- MongoDB - для документо-ориентированного хранения
-- Redis - для кэширования и управления сессиями
+- PostgreSQL - for relational data
+- MongoDB - for document-oriented storage
+- Redis - for caching and session management
 
-## Безопасность
+## Development
 
-- Все чувствительные данные (API ключи, пароли) хранятся в файлах конфигурации, добавленных в `.gitignore`
-- Не коммитьте файлы с реальными API ключами и паролями
-- Используйте `.env.example` и `config.example.py` как шаблоны
-- Для production окружения используйте переменные окружения
+### Creating a new branch for a bot
 
-## Разработка
-
-### Создание новой ветки для бота
-
-1. Создайте новую ветку от main:
+1. Create a new branch from main:
    ```bash
-   git checkout -b <bot-name>
+   git switch -c <bot-name>
    ```
 
-2. Реализуйте необходимую логику в соответствующих директориях
+2. Implement the required logic in the appropriate directories
 
-3. Сохраните базовую структуру проекта, добавляя только нужные файлы реализации
+3. Maintain the base project structure, adding only necessary implementation files
 
-### Рекомендации по структуре
+### Structure Guidelines
 
-- **core/agents/** - размещайте классы AI агентов
-- **core/processors/** - логика обработки сообщений
-- **interfaces/<type>/** - код специфичный для интерфейса
-- **database/models/** - модели данных для ORM
-- **utils/** - переиспользуемые функции
-
-## Лицензия
-
-Указать лицензию проекта.
-
-## Контакты
-
-Для вопросов и предложений создавайте Issues в репозитории.
+- **core/agents/** - place AI agent classes here
+- **core/processors/** - message processing logic
+- **interfaces/<type>/** - interface-specific code
+- **database/models/** - data models for ORM
+- **utils/** - reusable functions
