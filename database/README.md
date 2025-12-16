@@ -1,16 +1,16 @@
 # Database
 
-Директория содержит код для работы с базами данных.
+This directory contains code for working with databases.
 
-## Структура
+## Structure
 
 ### models/
 
-Содержит модели данных для ORM (SQLAlchemy, Tortoise, MongoEngine и т.д.).
+Contains data models for ORM (SQLAlchemy, Tortoise, MongoEngine, etc.).
 
-**Примеры моделей:**
+**Model examples:**
 
-**users.py** - модель пользователя:
+**users.py** - user model:
 ```python
 class User:
     - id
@@ -19,7 +19,7 @@ class User:
     - settings (JSON)
 ```
 
-**messages.py** - модель сообщений:
+**messages.py** - message model:
 ```python
 class Message:
     - id
@@ -30,7 +30,7 @@ class Message:
     - conversation_id
 ```
 
-**conversations.py** - модель беседы:
+**conversations.py** - conversation model:
 ```python
 class Conversation:
     - id
@@ -43,60 +43,60 @@ class Conversation:
 
 ### migrations/
 
-Содержит миграции схемы базы данных.
+Contains database schema migrations.
 
-**Используемые инструменты:**
-- Alembic (для SQLAlchemy)
+**Tools used:**
+- Alembic (for SQLAlchemy)
 - Django migrations
-- Или кастомные скрипты миграций
+- Or custom migration scripts
 
-## Подключения к БД
+## Database Connections
 
 ### PostgreSQL
 
-Используется для:
-- Хранение истории сообщений
-- Пользовательские данные
-- Метрики и аналитика
+Used for:
+- Message history storage
+- User data
+- Metrics and analytics
 
 ### MongoDB
 
-Используется для:
-- Документо-ориентированное хранение
-- Гибкие схемы данных
-- Большие объемы неструктурированных данных
+Used for:
+- Document-oriented storage
+- Flexible data schemas
+- Large volumes of unstructured data
 
 ### Redis
 
-Используется для:
-- Кэширование ответов
-- Управление сессиями
+Used for:
+- Response caching
+- Session management
 - Rate limiting
-- Временное хранение контекста
+- Temporary context storage
 
-## Пример использования
+## Usage Example
 
 ```python
 from database.models.users import User
 from database.models.messages import Message
 
-# Создание пользователя
+# Create user
 user = User.create(username="john_doe")
 
-# Сохранение сообщения
+# Save message
 message = Message.create(
     user_id=user.id,
     content="Hello, AI!",
     role="user"
 )
 
-# Получение истории
+# Get history
 history = Message.get_by_user(user.id, limit=10)
 ```
 
-## Принципы
+## Principles
 
-1. **Абстракция** - использование ORM для независимости от конкретной БД
-2. **Миграции** - все изменения схемы через миграции
-3. **Индексация** - правильные индексы для производительности
-4. **Нормализация** - соблюдение принципов проектирования БД
+1. **Abstraction** - using ORM for database independence
+2. **Migrations** - all schema changes through migrations
+3. **Indexing** - proper indexes for performance
+4. **Normalization** - following database design principles

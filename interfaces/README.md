@@ -1,66 +1,66 @@
 # Interfaces
 
-Директория содержит различные интерфейсы взаимодействия с AI-ботом.
+This directory contains different interaction interfaces for the AI bot.
 
-## Структура
+## Structure
 
 ### telegram/
 
-Реализация Telegram бота.
+Telegram bot implementation.
 
-**Содержит:**
-- Обработчики команд и сообщений
-- Inline клавиатуры и callback обработчики
-- Webhook или polling логику
-- Специфичные для Telegram форматирование (Markdown, HTML)
+**Contains:**
+- Command and message handlers
+- Inline keyboards and callback handlers
+- Webhook or polling logic
+- Telegram-specific formatting (Markdown, HTML)
 
-**Основные компоненты:**
-- `bot.py` - основной файл инициализации бота
-- `handlers.py` - обработчики сообщений и команд
-- `keyboards.py` - клавиатуры и меню
-- `middleware.py` - промежуточные обработчики
+**Main components:**
+- `bot.py` - main bot initialization file
+- `handlers.py` - message and command handlers
+- `keyboards.py` - keyboards and menus
+- `middleware.py` - middleware handlers
 
 ### web/
 
-Веб-интерфейс для AI-бота (REST API, WebSocket, веб-приложение).
+Web interface for AI bot (REST API, WebSocket, web application).
 
-**Содержит:**
+**Contains:**
 - REST API endpoints
-- WebSocket соединения для real-time общения
-- Статические файлы (если есть frontend)
-- Middleware для аутентификации и авторизации
+- WebSocket connections for real-time communication
+- Static files (if frontend exists)
+- Middleware for authentication and authorization
 
-**Основные компоненты:**
-- `app.py` - основное веб-приложение (FastAPI/Flask/Django)
-- `routes.py` - определение маршрутов
-- `websocket.py` - WebSocket обработчики
-- `static/` - статические файлы
-- `templates/` - шаблоны HTML
+**Main components:**
+- `app.py` - main web application (FastAPI/Flask/Django)
+- `routes.py` - route definitions
+- `websocket.py` - WebSocket handlers
+- `static/` - static files
+- `templates/` - HTML templates
 
 ### cli/
 
-Консольный интерфейс для взаимодействия с AI.
+Command-line interface for AI interaction.
 
-**Содержит:**
-- Обработчики команд терминала
-- REPL интерфейс
-- Форматирование вывода для консоли
-- Обработка аргументов командной строки
+**Contains:**
+- Terminal command handlers
+- REPL interface
+- Console output formatting
+- Command-line argument processing
 
-**Основные компоненты:**
-- `cli.py` - основной CLI интерфейс
-- `commands.py` - обработчики команд
-- `formatter.py` - форматирование вывода
+**Main components:**
+- `cli.py` - main CLI interface
+- `commands.py` - command handlers
+- `formatter.py` - output formatting
 
-## Принципы
+## Principles
 
-1. **Тонкий слой** - интерфейсы должны быть максимально тонкими, вся логика в core/
-2. **Специфичность** - код специфичный для платформы (Telegram API, FastAPI, etc.) изолирован здесь
-3. **Единый контракт** - все интерфейсы должны использовать одинаковый способ взаимодействия с core/
+1. **Thin layer** - interfaces should be as thin as possible, all logic stays in core/
+2. **Specificity** - platform-specific code (Telegram API, FastAPI, etc.) is isolated here
+3. **Unified contract** - all interfaces should use the same way of interacting with core/
 
-## Взаимодействие с core
+## Interaction with core
 
-Все интерфейсы должны использовать классы из `core/` для обработки логики:
+All interfaces should use classes from `core/` for logic processing:
 
 ```python
 from core.agents import OpenAIAgent
@@ -69,6 +69,6 @@ from core.processors import MessageProcessor
 agent = OpenAIAgent(api_key="...")
 processor = MessageProcessor(agent)
 
-# В обработчике интерфейса
+# In the interface handler
 response = processor.process_message(user_message, user_context)
 ```

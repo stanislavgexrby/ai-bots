@@ -1,20 +1,20 @@
 # Core
 
-Директория содержит основную логику работы AI-ботов, независимую от интерфейса взаимодействия.
+This directory contains the main AI bot logic, independent of the interaction interface.
 
-## Структура
+## Structure
 
 ### agents/
 
-Содержит реализации AI агентов - классов, которые инкапсулируют работу с различными AI API.
+Contains AI agent implementations - classes that encapsulate work with various AI APIs.
 
-**Примеры использования:**
-- Класс для работы с OpenAI API
-- Класс для работы с Anthropic Claude API
-- Базовый класс агента с общим интерфейсом
-- Агенты со специализированным поведением (RAG, функции, memory)
+**Usage examples:**
+- Class for working with OpenAI API
+- Class for working with Anthropic Claude API
+- Base agent class with common interface
+- Agents with specialized behavior (RAG, functions, memory)
 
-**Пример структуры файла:**
+**File structure example:**
 ```python
 class BaseAgent:
     def __init__(self, api_key: str, model: str):
@@ -29,16 +29,16 @@ class BaseAgent:
 
 ### processors/
 
-Содержит логику обработки запросов и формирования ответов.
+Contains request processing and response formatting logic.
 
-**Примеры использования:**
-- Обработка входящих сообщений
-- Форматирование ответов
-- Управление контекстом беседы
-- Обработка системных промптов
-- Логика для специальных команд
+**Usage examples:**
+- Processing incoming messages
+- Formatting responses
+- Managing conversation context
+- Processing system prompts
+- Logic for special commands
 
-**Пример структуры файла:**
+**File structure example:**
 ```python
 class MessageProcessor:
     def process_message(self, message: str, user_context: dict) -> dict:
@@ -51,8 +51,8 @@ class MessageProcessor:
         pass
 ```
 
-## Принципы
+## Principles
 
-1. **Независимость от интерфейса** - код не должен зависеть от того, откуда пришел запрос (Telegram, Web, CLI)
-2. **Переиспользуемость** - классы и функции должны быть универсальными
-3. **Модульность** - четкое разделение ответственности между агентами и процессорами
+1. **Interface independence** - code should not depend on where the request came from (Telegram, Web, CLI)
+2. **Reusability** - classes and functions should be universal
+3. **Modularity** - clear separation of responsibilities between agents and processors

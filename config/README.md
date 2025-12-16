@@ -1,53 +1,47 @@
-# Конфигурация
+# Configuration
 
-## Настройка конфигурации
+## Configuration Setup
 
-### Вариант 1: Использование .env файла
+### Option 1: Using .env file
 
-1. Скопируйте `.env.example` в `.env`:
+1. Copy `.env.example` to `.env`:
    ```bash
    cp .env.example .env
    ```
 
-2. Отредактируйте `.env` и заполните необходимые параметры
+2. Edit `.env` and fill in the required parameters
 
-3. Используйте библиотеку `python-dotenv` для загрузки переменных окружения:
+3. Use `python-dotenv` library to load environment variables:
    ```python
    from dotenv import load_dotenv
    load_dotenv()
    ```
 
-### Вариант 2: Использование Python конфигурации
+### Option 2: Using Python configuration
 
-1. Скопируйте `config.example.py` в `config.py`:
+1. Copy `config.example.py` to `config.py`:
    ```bash
    cp config/config.example.py config/config.py
    ```
 
-2. Отредактируйте `config.py` под ваши нужды
+2. Edit `config.py` according to your needs
 
-3. Импортируйте конфигурацию в вашем коде:
+3. Import configuration in your code:
    ```python
    from config.config import Config
    ```
 
-## Структура конфигурации
+## Configuration Structure
 
 ### AI API
-- Поддержка различных AI провайдеров: OpenAI, Anthropic, Google AI, Cohere, HuggingFace
-- Настройка моделей, токенов и параметров генерации
+- Support for various AI providers: OpenAI, Anthropic, Google AI, Cohere, HuggingFace
+- Model settings, tokens, and generation parameters
 
-### Базы данных
-- **PostgreSQL** - для реляционных данных
-- **MongoDB** - для документо-ориентированного хранения
-- **Redis** - для кэширования и сессий
+### Databases
+- **PostgreSQL** - for relational data
+- **MongoDB** - for document-oriented storage
+- **Redis** - for caching and sessions
 
-### Интерфейсы
-- **Telegram** - конфигурация бота (токен, webhook)
-- **Web** - настройки веб-сервера (хост, порт, CORS)
-
-## Безопасность
-
-- Все конфигурационные файлы с реальными данными добавлены в `.gitignore`
-- Никогда не коммитьте файлы с API ключами и паролями
-- Используйте переменные окружения для production окружения
+### Interfaces
+- **Telegram** - bot configuration (token, webhook)
+- **Web** - web server settings (host, port, CORS)
