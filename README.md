@@ -1,109 +1,64 @@
 # AI Bots Framework
 
-Universal framework for developing AI bots and agents with different interaction interfaces.
+Universal framework for developing AI bots with modular architecture.
 
-## Concept
+## Current Bot: Telegram Bot with Deepseek API
 
-This repository provides a base structure for building AI bots with clear separation between processing logic and interaction interfaces. The main branch contains the common project structure, while separate branches can contain specific bot implementations with different architectures and interfaces.
+Simple Telegram bot that uses Deepseek API for generating responses. Maintains conversation context for each user.
 
-## Architecture Principles
+**Features:**
+- Conversation context management
+- Basic commands (/start, /help, /clear)
+- Docker deployment ready
 
-### Separation of Concerns
-
-- **Core** - main AI processing logic, independent of the interface
-- **Interfaces** - different ways to interact with users (Telegram, Web, CLI)
-- **Database** - data layer, universal for all interfaces
-
-### Modularity
-
-Each repository branch can contain its own bot implementation with unique capabilities while using the common structure and configuration approaches.
-
-## Project Structure
-
-```
-ai-bots/
-├── core/                    # Main AI logic
-│   ├── agents/             # AI agent implementations
-│   └── processors/         # Request and response processors
-│
-├── interfaces/             # Interaction interfaces
-│   ├── telegram/          # Telegram bot interface
-│   ├── web/               # Web interface (REST API, WebSocket)
-│   └── cli/               # Command-line interface
-│
-├── database/               # Database layer
-│   ├── models/            # Data models
-│   └── migrations/        # Database schema migrations
-│
-├── config/                 # Configuration files
-│   ├── config.example.py  # Configuration example
-│   └── README.md          # Configuration documentation
-│
-├── utils/                  # Helper functions and utilities
-├── tests/                  # Tests
-└── logs/                   # Application logs
-```
-
-## Quick Start
-
-### 1. Clone the repository
-
-```bash
-git clone <repository-url>
-cd ai-bots
-```
-
-### 2. Configuration setup
-
-Choose one of the configuration methods:
-
-**Option A: Using .env file**
-
+**Setup:**
 ```bash
 cp .env.example .env
-# Edit .env and add your API keys
+# Add DEEPSEEK_API_KEY and TELEGRAM_BOT_TOKEN
+docker-compose up -d
 ```
 
-**Option B: Using Python configuration**
+Full documentation: [BOT_README.md](BOT_README.md)
 
-```bash
-cp config/config.example.py config/config.py
-# Edit config/config.py according to your needs
+## Architecture
+
+### Structure
+```
+core/
+├── agents/             - AI agent implementations
+│   └── deepseek_agent.py
+└── processors/         - Message processing
+    └── message_processor.py
+
+interfaces/
+└── telegram/          - Telegram bot interface
+    └── bot.py
+
+main.py                - Entry point
 ```
 
-## Configuration
+### Components
+- **DeepseekAgent** - API client for Deepseek
+- **MessageProcessor** - Context management
+- **TelegramBot** - Telegram interface handlers
 
-### Supported AI Providers
+## Supported Technologies
 
-- OpenAI (GPT-3.5, GPT-4)
-- Anthropic (Claude)
+### AI Providers
+- Deepseek (used in this bot)
+- OpenAI
+- Anthropic Claude
 - Google AI
 - Cohere
 - HuggingFace
 
-### Supported Databases
+### Interfaces
+- Telegram (used in this bot)
+- Discord
+- Web (REST API, WebSocket)
+- CLI
 
-- PostgreSQL - for relational data
-- MongoDB - for document-oriented storage
-- Redis - for caching and session management
-
-## Development
-
-### Creating a new branch for a bot
-
-1. Create a new branch from main:
-   ```bash
-   git switch -c <bot-name>
-   ```
-
-2. Implement the required logic in the appropriate directories
-
-3. Maintain the base project structure, adding only necessary implementation files
-
-### Structure Guidelines
-
-- **core/agents/** - place AI agent classes here
-- **core/processors/** - message processing logic
-- **interfaces/<type>/** - interface-specific code
-- **database/models/** - data models for ORM
-- **utils/** - reusable functions
+### Databases
+- PostgreSQL
+- MongoDB
+- Redis
